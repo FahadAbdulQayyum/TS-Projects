@@ -16,10 +16,6 @@ const res: { todo: string } = await todoInstance.main(
   "todo",
   "Enter your todo:"
 );
-// const { todo } = await todoInstance.main("todo", "Enter your todo:");
-// todo !== undefined && todoJson.push(todo);
-// let d: string = res.todo;
-// todoJson.push(d);
 
 interface TodoItem {
   todo: string;
