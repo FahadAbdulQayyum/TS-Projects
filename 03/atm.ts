@@ -15,7 +15,6 @@ const atm: ATM = new ATM();
 const res = await atm.main("num1", "Enter your name:");
 const { num1 } = res;
 let result = data.find((d) => d.name.toLowerCase() === num1.toLowerCase());
-console.log("result||", result);
 
 if (result) {
   const atm: ATM = new ATM();
@@ -29,4 +28,3 @@ if (result) {
 } else {
   console.log(chalk.red("Sorry, Wrong ATM!"));
 }
-console.log("res::", res, "result::", result);
