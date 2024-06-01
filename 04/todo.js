@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import todoJson from "./todo.json" assert { type: "json" };
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 class Todo {
@@ -20,13 +20,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const filePath = resolve(__dirname, "todo.json");
 const todos = todoJson;
+function read() {
+    let data = readFileSync(filePath, "utf8"); //data= [{todo:"faad"}]
+    return JSON.parse(data);
+}
+async function write(dataa) {
+    return await writeFileSync(filePath, JSON.stringify(dataa));
+}
 if (res.todo) {
-    let data = readFileSync(filePath, "utf8");
-    data = JSON.parse(data);
-    console.log("dta", data);
-    //   todos.push({ todo: res.todo });
-    //   data.push({ todo: res.todo });
-    //   const dataa = await writeFileSync(filePath, data);
+    const data = read();
+    data.push({ todo: res.todo });
+    write(data);
     console.log(chalk.green("Todo added successfully!"));
 }
 else {

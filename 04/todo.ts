@@ -27,20 +27,19 @@ interface TodoItem {
 }
 type TodoList = TodoItem[];
 const todos: TodoList = todoJson;
+function read() {
+  let data = readFileSync(filePath, "utf8"); //data= [{todo:"faad"}]
+  return JSON.parse(data);
+}
 
+async function write(dataa: any) {
+  return await writeFileSync(filePath, JSON.stringify(dataa));
+}
 if (res.todo) {
-  let data: string | { todo: string }[] = readFileSync(filePath, "utf8");
-  //   data = JSON.parse(data);
-  console.log("dta", data);
-  //   todos.push({ todo: res.todo });
-  //   typeof data !== "string" ? data.push({ todo: res.todo }) : "";
-  if (typeof data === "object") {
-    data.push({ todo: res.todo });
-  }else{
-console.log('Wrong')
-  }
-  //   const dataa = await writeFileSync(filePath, data);
-  else console.log(chalk.green("Todo added successfully!"));
+  const data = read();
+  data.push({ todo: res.todo });
+  write(data);
+  console.log(chalk.green("Todo added successfully!"));
 } else {
   console.log(chalk.red("No todo entered."));
 }
