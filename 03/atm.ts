@@ -35,23 +35,16 @@ class ATM {
       amount = amount - +res.input;
       userInfo.amount = "$" + amount.toString();
       console.log(chalk.black("Your remaining amount is: " + userInfo.amount));
-      console.log("read:::", this.read());
       let read: dataInt[] = JSON.parse(this.read());
       let found = read.find((v) => v.username === userInfo.username);
       let otherThanFound = read.filter((v) => v.username !== userInfo.username);
-      console.log("found:", found);
       found = userInfo;
       for (let v of read) {
-        console.log("vvv,", v.username === found.username);
         if (v.username === found.username) {
-          // return { ...v, amount: found.amount };
-          // return { ...otherThanFound, ...found };
           read = [...otherThanFound, found];
         }
       }
-      // let updatedData = [...read, found];
       let updatedData = read;
-      console.log("updatedDataaaaa:", updatedData);
       this.write(updatedData);
     }
   };

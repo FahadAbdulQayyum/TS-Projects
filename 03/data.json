@@ -1,4 +1,1 @@
-[
-  { "name": "Fahad", "username": "fahad", "pin": 12345, "amount": "$1000" },
-  { "name": "Aftab", "username": "aftab", "pin": 54321, "amount": "$4700" }
-]
+[{"name":"Fahad","username":"fahad","pin":12345,"amount":"$1000"},{"name":"Aftab","username":"aftab","pin":54321,"amount":"$4600"}]
