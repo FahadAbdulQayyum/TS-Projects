@@ -25,25 +25,34 @@ class SMS {
     }
     write(data, filteredData) {
         let rd = JSON.parse(this.read());
-        // let dt = [rd, data];
-        // let dt = [...rd, data];
-        // let dt = [filteredData ? filteredData : rd, data];
         let dt = filteredData ? [...filteredData, data] : [...rd, data];
-        // let dt = data;
-        // let dt = data;
         writeFileSync(filePath, JSON.stringify(dt));
     }
-    // async updatePaymentStatus(data: studentInt) {
     async updatePaymentStatus(roll) {
         let res = JSON.parse(this.read());
         let found = res.find((v) => v.rollNo === roll);
         console.log("found:", found);
-        let paymentMonth = await this.inpt(undefined, "pay", "Enter the month paid:");
+        // let paymentMonth = await this.inpt(
+        //   undefined,
+        //   "pay",
+        //   "Enter the month paid:"
+        // );
+        let paymentMonth = await this.inpt("list", "pay", "Enter your month:", [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+        ]);
         let otherData = res.filter((v) => v.rollNo !== found.rollNo);
-        console.log("::otherData::", otherData);
         found.feePaymentStatus.push(paymentMonth.pay);
-        console.log("::found::", found);
-        // this.write({ ...otherData, found });
         this.write(found, otherData);
     }
 }
@@ -63,4 +72,23 @@ if (res.option === "Enter Students Info") {
 else if (res.option === "Update Student Payment") {
     const { studentRollNo } = await sms.inpt(undefined, "studentRollNo", "Enter Student's rollNo:");
     sms.updatePaymentStatus(studentRollNo);
+}
+else if (res.option === "Look Students Information") {
+    const dt = JSON.parse(sms.read());
+    console.log(chalk.bgCyanBright("***********************************************************"));
+    console.log(chalk.bgBlackBright("**************** ALL STUDENTS INFORMATIONS ****************"));
+    console.log(" ");
+    dt.map((v, i) => console.log(chalk.magenta(i +
+        1 +
+        ": " +
+        v.name +
+        " --- " +
+        v.rollNo +
+        " --- " +
+        "( " +
+        v.feePaymentStatus.join(", ") +
+        " )")));
+    console.log(" ");
+    console.log(chalk.bgBlackBright("***********************************************************"));
+    console.log(chalk.bgCyanBright("***********************************************************"));
 }

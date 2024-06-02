@@ -45,11 +45,25 @@ class SMS {
     let res = JSON.parse(this.read());
     let found = res.find((v: studentInt) => v.rollNo === roll);
     console.log("found:", found);
-    let paymentMonth = await this.inpt(
-      undefined,
-      "pay",
-      "Enter the month paid:"
-    );
+    // let paymentMonth = await this.inpt(
+    //   undefined,
+    //   "pay",
+    //   "Enter the month paid:"
+    // );
+    let paymentMonth = await this.inpt("list", "pay", "Enter your month:", [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ]);
     let otherData = res.filter((v: studentInt) => v.rollNo !== found.rollNo);
     found.feePaymentStatus.push(paymentMonth.pay);
     this.write(found, otherData);
@@ -81,4 +95,44 @@ if (res.option === "Enter Students Info") {
     "Enter Student's rollNo:"
   );
   sms.updatePaymentStatus(studentRollNo);
+} else if (res.option === "Look Students Information") {
+  const dt = JSON.parse(sms.read());
+  console.log(
+    chalk.bgCyanBright(
+      "***********************************************************"
+    )
+  );
+  console.log(
+    chalk.bgBlackBright(
+      "**************** ALL STUDENTS INFORMATIONS ****************"
+    )
+  );
+  console.log(" ");
+  dt.map((v: studentInt, i: number) =>
+    console.log(
+      chalk.magenta(
+        i +
+          1 +
+          ": " +
+          v.name +
+          " --- " +
+          v.rollNo +
+          " --- " +
+          "( " +
+          v.feePaymentStatus.join(", ") +
+          " )"
+      )
+    )
+  );
+  console.log(" ");
+  console.log(
+    chalk.bgBlackBright(
+      "***********************************************************"
+    )
+  );
+  console.log(
+    chalk.bgCyanBright(
+      "***********************************************************"
+    )
+  );
 }
