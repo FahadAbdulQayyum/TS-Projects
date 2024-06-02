@@ -34,11 +34,9 @@ let currency = new Currency();
 const res = await currency.main("inp", "Select your currency conversion:");
 if (res.inp === "USD - PKR") {
     const ress = await currency.inpt("inp", "Enter you rate" + " (" + res.inp + ")");
-    //   console.log(chalk.green("$" + ress.inp + "= " + +ress.inp * 275 + "PKR"));
     console.log(chalk.green("$" + ress.inp + " = " + +ress.inp * CurrencyExchange.USD + "PKR"));
 }
 else {
     const ress = await currency.inpt("inp", "Enter you rate" + " (" + res.inp + ")");
-    //   console.log(chalk.green(ress.inp + "PKR = $" + (+ress.inp / 275).toFixed(2)));
     console.log(chalk.green(ress.inp + "PKR = $" + (+ress.inp / CurrencyExchange.USD).toFixed(2)));
 }
