@@ -31,7 +31,6 @@ class ATM {
                 let read = JSON.parse(this.read());
                 let found = read.find((v) => v.username === userInfo.username);
                 let otherThanFound = read.filter((v) => v.username !== userInfo.username);
-                console.log("ohterThanFound", otherThanFound, "found", found);
                 found = userInfo;
                 for (let v of read) {
                     if (v.username === found.username) {

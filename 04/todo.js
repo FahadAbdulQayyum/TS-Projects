@@ -31,9 +31,14 @@ if (res.todo) {
     const data = read();
     data.push({ todo: res.todo });
     write(data);
+    // setTimeout(() => {
+    let updatedData = read();
+    updatedData = JSON.stringify(updatedData);
     console.log(chalk.green("Todo added successfully!"));
+    console.log(JSON.parse(updatedData));
+    // }, 2000);
 }
 else {
     console.log(chalk.red("No todo entered."));
 }
-console.log(todos);
+// console.log(todos);
