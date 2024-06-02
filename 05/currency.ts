@@ -36,7 +36,6 @@ if (res.inp === "USD - PKR") {
     "inp",
     "Enter you rate" + " (" + res.inp + ")"
   );
-  //   console.log(chalk.green("$" + ress.inp + "= " + +ress.inp * 275 + "PKR"));
   console.log(
     chalk.green(
       "$" + ress.inp + " = " + +ress.inp * CurrencyExchange.USD + "PKR"
@@ -47,7 +46,6 @@ if (res.inp === "USD - PKR") {
     "inp",
     "Enter you rate" + " (" + res.inp + ")"
   );
-  //   console.log(chalk.green(ress.inp + "PKR = $" + (+ress.inp / 275).toFixed(2)));
   console.log(
     chalk.green(
       ress.inp + "PKR = $" + (+ress.inp / CurrencyExchange.USD).toFixed(2)
