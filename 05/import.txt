@@ -1,0 +1,7 @@
+class Currency {
+    constructor(){}
+
+    currency(){
+        const answer = new inquirer.prompt([{type:"input",name:"currency"}])
+    }
+}
