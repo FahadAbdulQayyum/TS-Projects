@@ -37,15 +37,10 @@ class SMS {
 
   write(data: studentInt, filteredData?: studentInt[]) {
     let rd = JSON.parse(this.read());
-    // let dt = [rd, data];
-    // let dt = [...rd, data];
-    // let dt = [filteredData ? filteredData : rd, data];
     let dt = filteredData ? [...filteredData, data] : [...rd, data];
-    // let dt = data;
-    // let dt = data;
     writeFileSync(filePath, JSON.stringify(dt));
   }
-  // async updatePaymentStatus(data: studentInt) {
+
   async updatePaymentStatus(roll: number) {
     let res = JSON.parse(this.read());
     let found = res.find((v: studentInt) => v.rollNo === roll);
@@ -56,10 +51,7 @@ class SMS {
       "Enter the month paid:"
     );
     let otherData = res.filter((v: studentInt) => v.rollNo !== found.rollNo);
-    console.log("::otherData::", otherData);
     found.feePaymentStatus.push(paymentMonth.pay);
-    console.log("::found::", found);
-    // this.write({ ...otherData, found });
     this.write(found, otherData);
   }
 }
