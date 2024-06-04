@@ -1,7 +1,8 @@
 import inquirer from "inquirer";
-let sec = 55;
-let min = 0;
-let hr = 0;
+// let hr: number | string = 23;
+let hr = 1;
+let minn = 59;
+let sec = 59;
 async function main() {
     try {
         while (1) {
@@ -25,27 +26,38 @@ async function main() {
 function countDown(min) {
     setInterval(() => {
         console.clear();
-        // if (sec === 0 || sec === "0") {
-        //   console.log("***");
-        //   sec = "00";
-        // }
         if (typeof sec === "number" && sec < 10) {
-            // typeof sec === "number" && sec++;
             sec = "0" + sec;
         }
-        if (sec === "60" || sec === 60) {
-            sec = 0;
-            if (sec === 0) {
-                sec = "00";
-            }
-            //   min++;
-            //   if (min < 10) {
-            //     min = "0" + min;
-            //   }
+        if (typeof minn === "number" && minn < 10) {
+            minn = "0" + minn;
         }
-        console.log(sec + ":");
+        if (typeof hr === "number" && hr < 10) {
+            hr = "0" + hr;
+        }
+        if (sec === "00" || sec === 0) {
+            sec = 59;
+            minn = Number(minn);
+            minn--;
+        }
+        if (minn === "00" || minn === 0) {
+            minn = 59;
+            // typeof hr === "number" && hr--;
+            hr = +hr;
+            hr--;
+        }
+        // if (hr === "01" || hr === 1) {
+        if (hr === 0) {
+            console.log("zero hr");
+        }
+        if ((hr === "00" || hr === 0) &&
+            (minn === "00" || minn === 0) &&
+            (sec === "00" || sec === 0)) {
+            clearInterval;
+        }
+        console.log(hr + ":" + minn + ":" + sec);
         sec = Number(sec);
-        typeof sec === "number" && sec++;
-    }, 1000);
+        typeof sec === "number" && sec--;
+    }, 1);
 }
 main();

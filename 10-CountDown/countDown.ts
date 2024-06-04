@@ -1,9 +1,10 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 
-let sec: number | string = 0;
-let min: number | string = 0;
-let hr: number | string = 0;
+// let hr: number | string = 23;
+let hr: number | string = 1;
+let minn: number | string = 59;
+let sec: number | string = 59;
 
 async function main() {
   try {
@@ -18,36 +19,56 @@ async function main() {
       if (answers.number1 === "x") {
         break;
       } else {
-        countDown(+answers.number1);
+        // countDown(+answers.number1);
+        countDown();
       }
     }
   } catch (error) {}
 }
 
-function countDown(min: number) {
+// function countDown(min: number) {
+function countDown() {
   setInterval(() => {
+    // let timer = setInterval(() => {
     console.clear();
-    // if (sec === 0 || sec === "0") {
-    //   console.log("***");
-    //   sec = "00";
-    // }
     if (typeof sec === "number" && sec < 10) {
-      // typeof sec === "number" && sec++;
       sec = "0" + sec;
     }
-    if (sec === "60" || sec === 60) {
-      sec = 0;
-      if (sec === 0) {
-        sec = "00";
-      }
-      //   min++;
-      //   if (min < 10) {
-      //     min = "0" + min;
-      //   }
+    if (typeof minn === "number" && minn < 10) {
+      minn = "0" + minn;
     }
-    console.log(sec + ":");
+    if (typeof hr === "number" && hr < 10) {
+      hr = "0" + hr;
+    }
+    if (sec === "00" || sec === 0) {
+      sec = 59;
+      minn = Number(minn);
+      minn--;
+    }
+
+    if (minn === "00" || minn === 0) {
+      minn = 59;
+      // typeof hr === "number" && hr--;
+      hr = +hr;
+      hr--;
+    }
+    // if (hr === "01" || hr === 1) {
+    if (hr === 0) {
+      console.log("zero hr");
+    }
+    if (
+      (hr === "00" || hr === 0) &&
+      (minn === "00" || minn === 0) &&
+      (sec === "00" || sec === 0)
+    ) {
+      stopInterval();
+    }
+    console.log(hr + ":" + minn + ":" + sec);
     sec = Number(sec);
-    typeof sec === "number" && sec++;
-  }, 1000);
+    typeof sec === "number" && sec--;
+  }, 1);
+}
+function stopInterval() {
+  clearInterval(countDown());
 }
 main();
