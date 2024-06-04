@@ -17,14 +17,16 @@ async function main() {
                 break;
             }
             else {
-                countDown(+answers.number1);
+                // countDown(+answers.number1);
+                countDown();
             }
         }
     }
     catch (error) { }
 }
-function countDown(min) {
-    setInterval(() => {
+// function countDown(min: number) {
+function countDown() {
+    let timer = setInterval(() => {
         console.clear();
         if (typeof sec === "number" && sec < 10) {
             sec = "0" + sec;
@@ -40,24 +42,24 @@ function countDown(min) {
             minn = Number(minn);
             minn--;
         }
+        if ((hr === 0 || hr === "00") &&
+            (minn === 0 || minn === "00") &&
+            (sec === 0 || sec === "00")) {
+            return stopInterval();
+        }
         if (minn === "00" || minn === 0) {
-            minn = 59;
-            // typeof hr === "number" && hr--;
+            if (hr !== 0)
+                minn = 59;
             hr = +hr;
-            hr--;
-        }
-        // if (hr === "01" || hr === 1) {
-        if (hr === 0) {
-            console.log("zero hr");
-        }
-        if ((hr === "00" || hr === 0) &&
-            (minn === "00" || minn === 0) &&
-            (sec === "00" || sec === 0)) {
-            clearInterval;
+            if (hr !== 0)
+                hr--;
         }
         console.log(hr + ":" + minn + ":" + sec);
         sec = Number(sec);
-        typeof sec === "number" && sec--;
+        sec--;
     }, 1);
+    function stopInterval() {
+        clearInterval(timer);
+    }
 }
 main();

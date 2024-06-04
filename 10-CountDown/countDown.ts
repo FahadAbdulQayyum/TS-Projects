@@ -28,8 +28,7 @@ async function main() {
 
 // function countDown(min: number) {
 function countDown() {
-  setInterval(() => {
-    // let timer = setInterval(() => {
+  let timer = setInterval(() => {
     console.clear();
     if (typeof sec === "number" && sec < 10) {
       sec = "0" + sec;
@@ -46,29 +45,26 @@ function countDown() {
       minn--;
     }
 
+    if (
+      (hr === 0 || hr === "00") &&
+      (minn === 0 || minn === "00") &&
+      (sec === 0 || sec === "00")
+    ) {
+      return stopInterval();
+    }
+
     if (minn === "00" || minn === 0) {
       minn = 59;
-      // typeof hr === "number" && hr--;
       hr = +hr;
-      hr--;
-    }
-    // if (hr === "01" || hr === 1) {
-    if (hr === 0) {
-      console.log("zero hr");
-    }
-    if (
-      (hr === "00" || hr === 0) &&
-      (minn === "00" || minn === 0) &&
-      (sec === "00" || sec === 0)
-    ) {
-      stopInterval();
+      if (hr !== 0) hr--;
     }
     console.log(hr + ":" + minn + ":" + sec);
     sec = Number(sec);
-    typeof sec === "number" && sec--;
+    sec--;
   }, 1);
-}
-function stopInterval() {
-  clearInterval(countDown());
+
+  function stopInterval() {
+    clearInterval(timer);
+  }
 }
 main();
