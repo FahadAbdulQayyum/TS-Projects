@@ -9,7 +9,7 @@ async function main() {
                 {
                     type: "input",
                     name: "number1",
-                    message: "Enter the minutes:",
+                    message: "Enter the minute (Press x to exit):",
                 },
             ]);
             if (answers.number1 === "x") {
@@ -31,10 +31,10 @@ function countDown(min) {
     let timer = setInterval(() => {
         console.clear();
         // Add leading zeros if needed
-        let displayHr = typeof hr === "number" && hr < 10 ? "0" + hr : hr;
-        let displayMinn = typeof minn === "number" && minn < 10 ? "0" + minn : minn;
-        let displaySec = typeof sec === "number" && sec < 10 ? "0" + sec : sec;
-        console.log(displayHr + ":" + displayMinn + ":" + displaySec);
+        let hour = typeof hr === "number" && hr < 10 ? "0" + hr : hr;
+        let Minute = typeof minn === "number" && minn < 10 ? "0" + minn : minn;
+        let Second = typeof sec === "number" && sec < 10 ? "0" + sec : sec;
+        console.log(hour + ":" + Minute + ":" + Second);
         if (sec === 0) {
             if (minn === 0) {
                 if (hr === 0) {
@@ -58,6 +58,6 @@ function countDown(min) {
             sec = +sec;
             sec--;
         }
-    }, 1000); // Change the interval to 1000ms (1 second)
+    }, 1000);
 }
 main();
