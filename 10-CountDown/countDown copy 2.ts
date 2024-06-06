@@ -19,20 +19,17 @@ async function main() {
       if (answers.number1 === "x") {
         break;
       } else {
-        countDown(+answers.number1);
-        // countDown();
+        // countDown(+answers.number1);
+        countDown();
       }
     }
   } catch (error) {}
 }
 
-function countDown(min: number) {
-  // function countDown() {
-  // minn = min;
-  hr = min;
+// function countDown(min: number) {
+function countDown() {
   let timer = setInterval(() => {
     console.clear();
-
     if (typeof sec === "number" && sec < 10) {
       sec = "0" + sec;
     }
@@ -42,15 +39,21 @@ function countDown(min: number) {
     if (typeof hr === "number" && hr < 10) {
       hr = "0" + hr;
     }
-
-    // if ((sec === "00" && +minn > 0) || (sec === 0 && +minn > 0)) {
     if (sec === "00" || sec === 0) {
-      +minn >= 0 ? (sec = 59) : (sec = 0);
+      sec = 59;
       minn = Number(minn);
       minn--;
     }
 
-    if ((minn === "00" && +hr > 0) || (minn === 0 && +hr > 0)) {
+    if (
+      (hr === 0 || hr === "00") &&
+      (minn === 0 || minn === "00") &&
+      (sec === 0 || sec === "00")
+    ) {
+      return stopInterval();
+    }
+
+    if ((minn === "00" && hr !== "00") || (minn === 0 && hr !== 0)) {
       // if (minn === "00" || minn === 0) {
       // if (minn === 0 && hr !== 0) {
       // if (hr !== 0 || hr.toString() !== "00") minn = 59;
@@ -62,14 +65,7 @@ function countDown(min: number) {
     }
     console.log(hr + ":" + minn + ":" + sec);
     sec = Number(sec);
-    +minn > 0 && sec--;
-    if (
-      (hr === 0 || hr === "00") &&
-      (minn === 0 || minn === "00") &&
-      (sec === 0 || sec.toString() === "00")
-    ) {
-      return stopInterval();
-    }
+    sec--;
   }, 1);
 
   function stopInterval() {
