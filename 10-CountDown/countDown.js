@@ -1,11 +1,10 @@
 import inquirer from "inquirer";
-// let hr: number | string = 23;
 let hr = 1;
 let minn = 59;
 let sec = 59;
 async function main() {
     try {
-        while (1) {
+        while (true) {
             let answers = await inquirer.prompt([
                 {
                     type: "input",
@@ -18,55 +17,47 @@ async function main() {
             }
             else {
                 countDown(+answers.number1);
-                // countDown();
             }
         }
     }
-    catch (error) { }
+    catch (error) {
+        console.error(error);
+    }
 }
 function countDown(min) {
-    // function countDown() {
-    // minn = min;
-    hr = min;
+    hr = 0;
+    minn = min;
+    sec = 0;
     let timer = setInterval(() => {
         console.clear();
-        if (typeof sec === "number" && sec < 10) {
-            sec = "0" + sec;
+        // Add leading zeros if needed
+        let displayHr = typeof hr === "number" && hr < 10 ? "0" + hr : hr;
+        let displayMinn = typeof minn === "number" && minn < 10 ? "0" + minn : minn;
+        let displaySec = typeof sec === "number" && sec < 10 ? "0" + sec : sec;
+        console.log(displayHr + ":" + displayMinn + ":" + displaySec);
+        if (sec === 0) {
+            if (minn === 0) {
+                if (hr === 0) {
+                    clearInterval(timer);
+                    console.log("Time's up!");
+                    return;
+                }
+                else {
+                    hr = +hr;
+                    hr--;
+                    minn = 59;
+                }
+            }
+            else {
+                minn = +minn;
+                minn--;
+            }
+            sec = 59;
         }
-        if (typeof minn === "number" && minn < 10) {
-            minn = "0" + minn;
+        else {
+            sec = +sec;
+            sec--;
         }
-        if (typeof hr === "number" && hr < 10) {
-            hr = "0" + hr;
-        }
-        // if ((sec === "00" && +minn > 0) || (sec === 0 && +minn > 0)) {
-        if (sec === "00" || sec === 0) {
-            +minn >= 0 ? (sec = 59) : (sec = 0);
-            minn = Number(minn);
-            minn--;
-        }
-        if ((minn === "00" && +hr > 0) || (minn === 0 && +hr > 0)) {
-            // if (minn === "00" || minn === 0) {
-            // if (minn === 0 && hr !== 0) {
-            // if (hr !== 0 || hr.toString() !== "00") minn = 59;
-            minn = 59;
-            hr = +hr;
-            if (hr !== 0)
-                hr--;
-            // if (hr === 0) minn = 0;
-            // if (hr === 0 || hr.toString() === "00") minn = 0;
-        }
-        console.log(hr + ":" + minn + ":" + sec);
-        sec = Number(sec);
-        +minn > 0 && sec--;
-        if ((hr === 0 || hr === "00") &&
-            (minn === 0 || minn === "00") &&
-            (sec === 0 || sec.toString() === "00")) {
-            return stopInterval();
-        }
-    }, 1);
-    function stopInterval() {
-        clearInterval(timer);
-    }
+    }, 1000); // Change the interval to 1000ms (1 second)
 }
 main();
