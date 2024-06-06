@@ -30,7 +30,7 @@ function countDown(min) {
     sec = 0;
     let timer = setInterval(() => {
         console.clear();
-        // Add leading zeros if needed
+        // Add zeros when less than 10
         let hour = typeof hr === "number" && hr < 10 ? "0" + hr : hr;
         let Minute = typeof minn === "number" && minn < 10 ? "0" + minn : minn;
         let Second = typeof sec === "number" && sec < 10 ? "0" + sec : sec;
