@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+import chalk from "chalk";
 import Quiz from "./quiz.json" assert { type: "json" };
 async function main(type = "input", name, msg, choices) {
     let ans = await inquirer.prompt([
@@ -6,8 +7,18 @@ async function main(type = "input", name, msg, choices) {
     ]);
     return ans;
 }
-// let answer = await main(undefined, "msg", "Enter your questions?");
-// console.log("answer:", answer.msg);
 let quizes = Quiz;
-let answerChoice = await main("list", "msgg", quizes[0].q1, quizes[0].ans);
-console.log("answer:", answerChoice.msgg === quizes[0].correct ? "Congrats!" : "Unfortunately!");
+let len = quizes.length;
+let i = 0;
+while (i < len) {
+    let answerChoice = await main("list", "msgg", quizes[i].q1, quizes[i].ans);
+    console.log(answerChoice.msgg === quizes[i].correct
+        ? chalk.green("Congrats! You chose right answers.")
+        : chalk.red("Unfortunately! You chose a wrong answer. Right answer is:", chalk.white(quizes[i].correct)));
+    i++;
+}
+// let answerChoice = await main("list", "msgg", quizes[0].q1, quizes[0].ans);
+// console.log(
+//   "answer:",
+//   answerChoice.msgg === quizes[0].correct ? "Congrats!" : "Unfortunately!"
+// );

@@ -3,5 +3,10 @@
     "q1": "What is the Capital of Pakitan?",
     "ans": ["Karachi", "Islamabad", "Quetta", "Lahore"],
     "correct": "Islamabad"
+  },
+  {
+    "q1": "What is the Capital of Balochistan?",
+    "ans": ["Mand", "Gwadar", "Quetta", "Panjgur"],
+    "correct": "Quetta"
   }
 ]
