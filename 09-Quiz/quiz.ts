@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
+import Quiz from "./quiz.json" assert { type: "json" };
 
 async function main(
   type: string = "input",
@@ -12,13 +13,12 @@ async function main(
   ]);
   return ans;
 }
-let answer = await main(undefined, "msg", "Enter your questions?");
-console.log("answer:", answer.msg);
+// let answer = await main(undefined, "msg", "Enter your questions?");
+// console.log("answer:", answer.msg);
+let quizes = Quiz;
 
-let answerChoice = await main("list", "msgg", "Enter your Options?", [
-  "1st",
-  "2nd",
-  "Third",
-  "Fourth",
-]);
-console.log("answer:", answerChoice.msgg);
+let answerChoice = await main("list", "msgg", quizes[0].q1, quizes[0].ans);
+console.log(
+  "answer:",
+  answerChoice.msgg === quizes[0].correct ? "Congrats!" : "Unfortunately!"
+);
