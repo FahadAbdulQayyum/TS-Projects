@@ -13,8 +13,7 @@ async function main(
   ]);
   return ans;
 }
-// let answer = await main(undefined, "msg", "Enter your questions?");
-// console.log("answer:", answer.msg);
+
 let quizes = Quiz;
 
 let answerChoice = await main("list", "msgg", quizes[0].q1, quizes[0].ans);
