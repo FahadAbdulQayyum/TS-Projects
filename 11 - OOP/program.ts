@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import { Person } from "./person.js";
+import { Student } from "./student.js";
 
 class Program {
   async input(
@@ -24,6 +25,21 @@ class Program {
 
       MyPerson.AskQuestion(+inp);
       console.log("You are:", MyPerson.GetPersonality());
+
+      let inpp: string = await this.input(
+        undefined,
+        "name",
+        "What is your name: "
+      );
+      let MyStudent: Student = new Student();
+      MyStudent.AskQuestion(+inp);
+      MyStudent.name = inpp;
+      console.log(
+        "Your Name is:",
+        MyStudent.name,
+        "and your personality type is:",
+        MyStudent.GetPersonality()
+      );
     } catch (err) {
       console.error("Please enter an integer value.");
     }
