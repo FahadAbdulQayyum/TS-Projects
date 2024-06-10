@@ -1,4 +1,4 @@
-class Person {
+export class Person {
   // private personality: string;
   personality: string = "";
 
@@ -9,8 +9,10 @@ class Person {
   public AskQuestion(answer: number): void {
     if (answer === 1) {
       this.personality = "Extrovert";
-    } else {
+    } else if (answer === 2) {
       this.personality = "Introvert";
+    } else {
+      this.personality = "You are still a Mystery";
     }
   }
 

@@ -1,4 +1,4 @@
-class Person {
+export class Person {
     constructor() {
         // private personality: string;
         this.personality = "";
@@ -11,8 +11,11 @@ class Person {
         if (answer === 1) {
             this.personality = "Extrovert";
         }
-        else {
+        else if (answer === 2) {
             this.personality = "Introvert";
+        }
+        else {
+            this.personality = "You are still a Mystery";
         }
     }
     // This method returns the value of the Personality
@@ -20,4 +23,3 @@ class Person {
         return this.personality;
     }
 }
-export {};
