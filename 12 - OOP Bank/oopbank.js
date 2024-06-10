@@ -35,7 +35,6 @@ class MyBank {
     async deleteInfo() {
         const fetchedData = this.readInformation();
         const id = await myBank.process(undefined, "id", "Enter id:");
-        let filteredData;
         let restData;
         if (fetchedData) {
             restData = fetchedData.filter((v) => v.id !== +id);
