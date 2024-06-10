@@ -79,11 +79,11 @@ GAME: while (running) {
         console.log("What would you like to do now?");
         console.log("1. Continue fighting");
         console.log("2. Exit dungeon");
-        let inp = await main.input(undefined, "options", "Enter your options");
-        while (inp !== "1" && inp !== "2") {
-            console.log("Invalid command!");
-            inp = await main.input(undefined, "options", "Enter your options");
-        }
+    }
+    let inp = await main.input(undefined, "options", "Enter your options");
+    while (inp !== "1" && inp !== "2") {
+        console.log("Invalid command!");
+        inp = await main.input(undefined, "options", "Enter your options");
         if (inp === "1") {
             console.log("You continue on your adventure!");
         }
