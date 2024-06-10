@@ -1,9 +1,7 @@
 export class Person {
-  // private personality: string;
-  personality: string = "";
+  private personality: string = "";
 
   public Person() {
-    // constructor() {
     this.personality = "Mystery";
   }
   public AskQuestion(answer: number): void {

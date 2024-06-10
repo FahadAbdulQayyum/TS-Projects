@@ -1,10 +1,8 @@
 export class Person {
     constructor() {
-        // private personality: string;
         this.personality = "";
     }
     Person() {
-        // constructor() {
         this.personality = "Mystery";
     }
     AskQuestion(answer) {

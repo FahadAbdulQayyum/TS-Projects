@@ -32,5 +32,3 @@ class Program {
 
 const program: Program = new Program();
 program.main();
-// let na = await program.input(undefined, "name", "Enter your options:");
-// console.log("program:", na);
